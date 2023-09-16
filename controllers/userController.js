@@ -17,6 +17,10 @@ const generateEmailToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: 60 * 30 });
 };
 
+const keepAlive = (req, res)=>{
+  res.send("I am alive.");
+}
+
 const signupUser = async (req, res) => {
   const { userName, password, email } = req.body;
   try {
@@ -155,6 +159,7 @@ const resetPassword = async (req, res) => {
 };
 
 module.exports = {
+  keepAlive,
   signupUser,
   loginUser,
   forgotPassword,
